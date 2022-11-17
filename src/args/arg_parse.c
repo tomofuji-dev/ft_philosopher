@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:19:28 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:43:59 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:32:15 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool		arg_parse(t_args *args, int argc, char *argv[]);
 static bool	check_all_digit(int argc, char *argv[]);
 static int	ft_isdigit(int c);
 static int	parse_int(char *str);
-static long	parse_long(char *str);
+static bool	check_args(t_args *args);
 
 bool	arg_parse(t_args *args, int argc, char *argv[])
 {
@@ -27,15 +27,13 @@ bool	arg_parse(t_args *args, int argc, char *argv[])
 	if (check_all_digit(argc, argv) == false)
 		return (false);
 	args->n_philos = parse_int(argv[1]);
-	args->time_to_die = parse_long(argv[2]);
-	args->time_to_eat = parse_long(argv[3]);
-	args->time_to_sleep = parse_long(argv[4]);
+	args->time_to_die = parse_int(argv[2]);
+	args->time_to_eat = parse_int(argv[3]);
+	args->time_to_sleep = parse_int(argv[4]);
 	if (argc == 6)
 		args->n_must_eat = parse_int(argv[5]);
-	if (args->n_philos == -1 || args->time_to_die == -1 \
-		|| args->time_to_eat == -1 || args->time_to_sleep == -1 \
-		|| args->n_must_eat == -1)
-		return (NULL);
+	if (check_args(args) == false)
+		return (false);
 	if (argc == 5)
 		args->n_must_eat = -1;
 	return (true);
@@ -83,19 +81,11 @@ static int	parse_int(char *str)
 	return (n);
 }
 
-static long	parse_long(char *str)
+static bool	check_args(t_args *args)
 {
-	long	n;
-	long	d;
-
-	n = 0;
-	while (*str)
-	{
-		d = *str++ - '0';
-		if (n <= (LONG_MAX - d) / 10)
-			n = 10 * n + d;
-		else
-			return (-1);
-	}
-	return (n);
+	if (args->n_philos == -1 || args->time_to_die == -1 \
+		|| args->time_to_eat == -1 || args->time_to_sleep == -1 \
+		|| args->n_must_eat == -1)
+		return (false);
+	return (true);
 }

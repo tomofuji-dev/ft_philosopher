@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:13:33 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:53:03 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:28:00 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 typedef struct s_args
 {
 	int		n_philos;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
 	int		n_must_eat;
 }	t_args;
 

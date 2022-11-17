@@ -13,7 +13,8 @@ RM			=	rm
 CFLAGS		=	-Wall -Wextra -Werror -g
 
 SRCS		=	$(SRC_DIR)/main.c \
-				$(SRC_DIR)/init/arg.c \
+				$(SRC_DIR)/args/arg_parse.c \
+				$(SRC_DIR)/args/arg_to_env.c \
 				$(SRC_DIR)/init/init.c
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.d)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg.c                                              :+:      :+:    :+:   */
+/*   arg_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:19:28 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:04:36 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:43:59 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "args.h"
 #include <strings.h>
 #include <limits.h>
 
@@ -26,7 +26,6 @@ bool	arg_parse(t_args *args, int argc, char *argv[])
 		return (false);
 	if (check_all_digit(argc, argv) == false)
 		return (false);
-	bzero(args, sizeof(t_args));
 	args->n_philos = parse_int(argv[1]);
 	args->time_to_die = parse_long(argv[2]);
 	args->time_to_eat = parse_long(argv[3]);

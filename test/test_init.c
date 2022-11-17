@@ -6,13 +6,14 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:54:00 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 14:42:20 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:56:38 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "init.h"
 #include <stdio.h>
+#include <strings.h>
 
 static void	print_timeval(char *s, t_timeval t)
 {
@@ -23,6 +24,7 @@ int	main(int argc, char *argv[])
 {
 	t_env	env;
 
+	bzero(&env, sizeof(t_env));
 	if (init(&env, argc, argv) == false)
 		return (1);
 	printf("n_philos: %d\n", env.n_philos);

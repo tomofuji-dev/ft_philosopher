@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:13:33 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 14:38:17 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:52:56 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define INIT_H
 
 # include "philo.h"
+# include <stdio.h>
 
 typedef struct s_args
 {

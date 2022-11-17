@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:19:28 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 14:38:11 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:57:57 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,17 @@ bool	arg_parse(t_args *args, int argc, char *argv[])
 static bool	check_all_digit(int argc, char *argv[])
 {
 	int	i;
+	int	j;
 
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
-		while (*argv[i])
+		j = 0;
+		while (argv[i][j] != '\0')
 		{
-			if (ft_isdigit(*argv[i]) == 0)
+			if (ft_isdigit(argv[i][j]) == 0)
 				return (false);
-			argv[i]++;
+			j++;
 		}
 		i++;
 	}

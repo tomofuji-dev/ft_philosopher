@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:09:19 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:21:16 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,35 @@ typedef enum e_philo_status
 	TAKE_FORK
 }	t_philo_status;
 
-typedef struct s_fork_index
-{
-	int	left;
-	int	right;
-}	t_fork_index;
-
 typedef struct s_philo
 {
-	int				index;
 	t_pthread		*pthread;
-	t_fork_index	fork_index;
+	int				index;
+	int				left_fork;
+	int				right_fork;
 	t_philo_status	status;
 	t_timeval		last_meal_time;
 	int				n_eat;
 }	t_philo;
 
-typedef struct s_table
+typedef struct s_monitor
 {
-	t_philo	*philos;
-	t_mutex	*forks;
-}	t_table;
+	t_pthread	*pthread;
+	int			index;
+	t_philo		obj_philo;
+}	t_monitor;
 
 typedef struct s_env
 {
 	int			n_philos;
-	t_timeval	start;
 	t_timeval	time_to_die;
 	t_timeval	time_to_eat;
 	t_timeval	time_to_sleep;
 	int			n_must_eat;
-	t_table		*table;
+	t_timeval	start;
+	t_philo		*philos;
+	t_mutex		*forks;
+	t_monitor	*monitors;
 }	t_env;
 
 #endif

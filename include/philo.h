@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 14:52:43 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:09:19 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ typedef enum e_philo_status
 	TAKE_FORK
 }	t_philo_status;
 
-typedef struct s_fork_order
+typedef struct s_fork_index
 {
 	int	left;
 	int	right;
-}	t_fork_order;
+}	t_fork_index;
 
 typedef struct s_philo
 {
 	int				index;
 	t_pthread		*pthread;
-	t_fork_order	fork_order;
+	t_fork_index	fork_index;
 	t_philo_status	status;
 	t_timeval		last_meal_time;
 	int				n_eat;

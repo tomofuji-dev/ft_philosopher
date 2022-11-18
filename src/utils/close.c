@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:39:45 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/18 17:30:52 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:58:57 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	close_philos(t_philo *philos, int size)
 	i = 0;
 	while (i < size)
 	{
-		pthread_mutex_destroy(&philos[i].eating_mutex);
+		pthread_mutex_destroy(&(philos[i].eating_mutex));
 		i++;
 	}
 	free(philos);

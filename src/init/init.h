@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:46:07 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/18 15:11:15 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:31:46 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "philo.h"
 # include "args.h"
 
-bool	init(t_env *env, int argc, char *argv[]);
+bool		init(t_env *env, int argc, char *argv[]);
+bool		init_forks(t_env *env);
+bool		init_philos(t_env *env);
 
 #endif

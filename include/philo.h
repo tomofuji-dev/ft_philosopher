@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:21:16 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:53:47 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef enum e_philo_status
 {
 	EAT,
 	SLEEP,
-	THINK,
-	TAKE_FORK
+	THINK
 }	t_philo_status;
 
 typedef struct s_philo
@@ -38,6 +37,7 @@ typedef struct s_philo
 	t_philo_status	status;
 	t_timeval		last_meal_time;
 	int				n_eat;
+	t_mutex			eating_mutex;
 }	t_philo;
 
 typedef struct s_monitor
@@ -58,6 +58,8 @@ typedef struct s_env
 	t_philo		*philos;
 	t_mutex		*forks;
 	t_monitor	*monitors;
+	bool		finish;
+	t_mutex		*finish_mutex;
 }	t_env;
 
 #endif

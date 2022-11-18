@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:13:33 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 16:28:00 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:07:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct s_args
 
 bool	arg_parse(t_args *args, int argc, char *argv[]);
 bool	arg_to_env(t_env *env, int argc, char *argv[]);
+bool	init(t_env *env, int argc, char *argv[]);
+
 
 #endif

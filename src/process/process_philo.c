@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 13:34:53 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:42:58 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "time.h"
 #include "utils.h"
 #include <unistd.h>
+
+void		*process_philo(t_philo *philo);
+static void	eat(t_philo *philo);
+static void	sleep(t_philo *philo);
+static void	think(t_philo *philo);
 
 void	*process_philo(t_philo *philo)
 {

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/18 17:47:35 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:26:23 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	t_timeval		last_meal_time;
 	int				n_eat;
 	t_mutex			eating_mutex;
+	t_env			*env;
 }	t_philo;
 
 typedef struct s_monitor
@@ -45,6 +46,7 @@ typedef struct s_monitor
 	t_pthread	pthread;
 	int			index;
 	t_philo		*obj_philo;
+	t_env		*env;
 }	t_monitor;
 
 typedef struct s_env
@@ -54,6 +56,7 @@ typedef struct s_env
 	t_timeval	time_to_eat;
 	t_timeval	time_to_sleep;
 	int			n_must_eat;
+	int			n_already_eat;
 	t_timeval	start;
 	t_mutex		*forks;
 	t_philo		*philos;

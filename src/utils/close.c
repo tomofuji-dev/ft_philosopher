@@ -6,11 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:39:45 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/18 17:58:57 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/19 09:55:32 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "close.h"
+
+void	close_all(t_env *env);
 
 void	close_forks(t_mutex *forks, int size)
 {

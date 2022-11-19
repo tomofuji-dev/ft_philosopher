@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.h                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 16:09:31 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 11:19:10 by tfujiwar         ###   ########.fr       */
+/*   Created: 2022/11/19 10:32:10 by tfujiwar          #+#    #+#             */
+/*   Updated: 2022/11/19 11:12:44 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TIME_H
-# define TIME_H
+#include "utils.h"
+#include "time.h"
+#include <stdio.h>
 
-# include "philo.h"
+void	print_log(int timestamp, int philo_index, char *message)
+{
+	printf("%d %d %s\n", timestamp, philo_index, message);
+}
 
-int			timestamp_ms(t_timeval start_time);
-t_timeval	add_timeval(t_timeval t1, t_timeval t2);
-t_timeval	ms_to_timeval(int ms);
-int			timeval_to_micros(t_timeval t);
+void	wait_until(t_timeval t)
+{
+	t_timeval	now;
+	int			diff_micros;
 
-#endif
+	gettimeofday(&now, NULL);
+	diff_micros = timeval_to_micros(t) - timeval_to_micros(now);
+	if (diff_micros > 0)
+		usleep(diff_micros);
+}

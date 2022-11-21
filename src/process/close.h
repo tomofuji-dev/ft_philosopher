@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process.h                                          :+:      :+:    :+:   */
+/*   close.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 09:52:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 14:38:43 by tfujiwar         ###   ########.fr       */
+/*   Created: 2022/11/18 15:38:55 by tfujiwar          #+#    #+#             */
+/*   Updated: 2022/11/21 14:46:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROCESS_H
-# define PROCESS_H
+#ifndef CLOSE_H
+# define CLOSE_H
 
 # include "philo.h"
 
-void	*process_philo(t_philo *philo);
-void	*process_monitor(t_philo *monitor)
+void	close_all(t_env *env);
+void	close_forks(t_mutex *forks, int size);
+void	close_philos(t_philo *philos, int size);
 
 #endif

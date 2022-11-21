@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 13:42:58 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:36:43 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	*process_philo(t_philo *philo)
 		else if (env->status == THINK)
 			eat(philo);
 	}
+	return (NULL);
 }
 
 static void	eat(t_philo *philo)

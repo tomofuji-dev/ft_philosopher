@@ -6,11 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 11:29:07 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:39:13 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
+#include "process.h"
 #include <stdlib.h>
 #include <strings.h>
 

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 15:11:55 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:58:28 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <stdio.h>
 
 typedef struct timeval	t_timeval;
 typedef pthread_mutex_t	t_mutex;

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 15:42:49 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:27:36 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	*process_philo(void *argv)
 	philo = argv;
 	env = philo->env;
 	wait_until(env->start);
+	if (philo->index % 2 == 0)
+		usleep(timeval_to_micros(philo->env->time_to_eat));
 	while (env->finish == false)
 	{
 		if (philo->status == EAT)
@@ -42,6 +44,7 @@ void	*process_philo(void *argv)
 
 static void	philo_eat(t_philo *philo)
 {
+	philo->status = EAT;
 	pthread_mutex_lock(philo->left_fork);
 	print_log(timestamp_ms(philo->env->start), \
 							philo->index, "has taken a fork");
@@ -65,11 +68,13 @@ static void	philo_eat(t_philo *philo)
 
 static void	philo_sleep(t_philo *philo)
 {
+	philo->status = SLEEP;
 	print_log(timestamp_ms(philo->env->start), philo->index, "is sleeping");
 	usleep(timeval_to_micros(philo->env->time_to_sleep));
 }
 
 static void	philo_think(t_philo *philo)
 {
+	philo->status = THINK;
 	print_log(timestamp_ms(philo->env->start), philo->index, "is thinking");
 }

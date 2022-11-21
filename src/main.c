@@ -6,13 +6,14 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:39:40 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 14:50:07 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:31:44 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "init.h"
 #include "close.h"
+#include "time_utils.h"
 #include <stdio.h>
 #include <strings.h>
 

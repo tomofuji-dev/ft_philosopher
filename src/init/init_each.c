@@ -6,18 +6,20 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 14:39:13 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:31:30 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 #include "process.h"
+#include "close.h"
 #include <stdlib.h>
 #include <strings.h>
 
 bool		init_forks(t_env *env);
 bool		init_philos(t_env *env);
 static bool	init_a_philo(t_env *env, int index);
+bool		init_monitors(t_env *env);
 
 bool	init_forks(t_env *env)
 {
@@ -58,6 +60,7 @@ bool	init_philos(t_env *env)
 		}
 		i++;
 	}
+	return (true);
 }
 
 static bool	init_a_philo(t_env *env, int index)
@@ -109,4 +112,5 @@ bool	init_monitors(t_env *env)
 		env->monitors[i].env = env;
 		i++;
 	}
+	return (true);
 }

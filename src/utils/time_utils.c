@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:09:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 14:31:52 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:46:11 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "time.h"
+#include "time_utils.h"
 
 int			timestamp_ms(t_timeval start_time);
 void		set_start_time(t_env *env);
@@ -23,18 +23,18 @@ int	timestamp_ms(t_timeval start_time)
 	t_timeval	now;
 
 	gettimeofday(&now, NULL);
-	return ((int)(now.tv_sec - start_time.tv_sec) * 1000 \
-			+ (int)(now.tv_usec - start_time.tv_usec) / 1000;
+	return ((now.tv_sec - start_time.tv_sec) * 1000 \
+			+ (now.tv_usec - start_time.tv_usec) / 1000);
 }
 
 t_timeval	add_timeval(t_timeval t1, t_timeval t2)
 {
-	t_timeval	added_timeval;
+	t_timeval	sum;
 
-	added_timeval.tv_usec = t1.tv_usec + t2.tv_usec;
-	added_timeval.tv_sec = t1.tv_sec + t2.tv_sec + added_timeval.tv_usec / 1000000;
-	added_timeval.tv_usec %= 1000000;
-	return (t);
+	sum.tv_usec = t1.tv_usec + t2.tv_usec;
+	sum.tv_sec = t1.tv_sec + t2.tv_sec + sum.tv_usec / 1000000;
+	sum.tv_usec %= 1000000;
+	return (sum);
 }
 
 t_timeval	ms_to_timeval(int ms)

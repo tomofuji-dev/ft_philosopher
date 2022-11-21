@@ -6,12 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:47:29 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 11:20:09 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:15:54 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
-#include "time.h"
+#include "time_utils.h"
 #include "close.h"
 
 #define MS_UNTIL_START 500

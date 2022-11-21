@@ -6,13 +6,14 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 14:23:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:11:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <stdlib.h>
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdbool.h>
@@ -38,15 +39,15 @@ typedef struct s_philo
 	t_timeval		last_meal_time;
 	int				n_eat;
 	t_mutex			eating_mutex;
-	t_env			*env;
+	struct s_env	*env;
 }	t_philo;
 
 typedef struct s_monitor
 {
-	t_pthread	pthread;
-	int			index;
-	t_philo		*obj_philo;
-	t_env		*env;
+	t_pthread		pthread;
+	int				index;
+	t_philo			*obj_philo;
+	struct s_env	*env;
 }	t_monitor;
 
 typedef struct s_env

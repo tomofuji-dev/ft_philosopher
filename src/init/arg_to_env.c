@@ -6,12 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:14:33 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 13:30:22 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:16:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "args.h"
-#include "time.h"
+#include "time_utils.h"
 #include <strings.h>
 
 bool	arg_to_env(t_env *env, int argc, char *argv[])

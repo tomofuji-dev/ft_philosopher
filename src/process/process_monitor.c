@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 14:32:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:30:38 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	*process_monitor(void *argv)
 			env->finish = true;
 		pthread_mutex_unlock(&(env->finish_mutex));
 		pthread_mutex_unlock(&(philo->var_mutex));
+		precise_usleep(50);
 	}
 	return (NULL);
 }

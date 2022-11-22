@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 12:17:12 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:00:08 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_philo
 	int				last_meal_time;
 	int				n_eat;
 	t_mutex			var_mutex;
-	int				log_time;
 	struct s_env	*env;
 }	t_philo;
 

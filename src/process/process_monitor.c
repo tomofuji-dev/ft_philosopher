@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 17:30:38 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:00:54 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	*process_monitor(void *argv)
 		pthread_mutex_lock(&(env->finish_mutex));
 		if (env->finish == false && judge_time_to_die(philo))
 		{
-			philo->log_time = timestamp_ms(env->start);
-			print_log(philo, "died");
+			print_log(philo, timestamp_ms(env->start), "died");
 			env->finish = true;
 		}
 		if (env->n_must_eat != -1 && env->n_already_eat == env->n_must_eat)

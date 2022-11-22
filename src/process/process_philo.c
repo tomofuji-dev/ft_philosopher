@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 14:41:42 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:05:16 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,20 @@ void	*process_philo(void *argv)
 
 static void	philo_eat(t_philo *philo)
 {
+	int	time_for_log;
+
 	philo->status = EAT;
 	pthread_mutex_lock(philo->left_fork);
-	philo->log_time = timestamp_ms(philo->env->start);
-	print_log(philo, "has taken a fork");
+	print_log(philo, timestamp_ms(philo->env->start), "has taken a fork");
 	if (philo->env->n_philos == 1)
 		return ;
 	pthread_mutex_lock(philo->right_fork);
-	philo->log_time = timestamp_ms(philo->env->start);
+	time_for_log = timestamp_ms(philo->env->start);
 	pthread_mutex_lock(&(philo->var_mutex));
-	philo->last_meal_time = philo->log_time + philo->env->time_to_eat;
+	philo->last_meal_time = time_for_log + philo->env->time_to_eat;
 	pthread_mutex_unlock(&(philo->var_mutex));
-	print_log(philo, "has taken a fork");
-	print_log(philo, "is eating");
+	print_log(philo, time_for_log, "has taken a fork");
+	print_log(philo, time_for_log, "is eating");
 	wait_until(\
 		add_timeval(philo->env->start, ms_to_timeval(philo->last_meal_time)));
 	pthread_mutex_lock(&(philo->var_mutex));
@@ -77,14 +78,12 @@ static void	philo_eat(t_philo *philo)
 static void	philo_sleep(t_philo *philo)
 {
 	philo->status = SLEEP;
-	philo->log_time = timestamp_ms(philo->env->start);
-	print_log(philo, "is sleeping");
+	print_log(philo, timestamp_ms(philo->env->start), "is sleeping");
 	precise_usleep(philo->env->time_to_sleep * 1000);
 }
 
 static void	philo_think(t_philo *philo)
 {
 	philo->status = THINK;
-	philo->log_time = timestamp_ms(philo->env->start);
-	print_log(philo, "is thinking");
+	print_log(philo, timestamp_ms(philo->env->start), "is thinking");
 }

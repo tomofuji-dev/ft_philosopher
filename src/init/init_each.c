@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:28:29 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:02:30 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ static bool	init_a_philo(t_env *env, int index)
 		philo->right_fork = &(env->forks[index - 1]);
 	}
 	philo->status = THINK;
-	philo->last_meal_time = env->start;
+	philo->last_meal_time = 0;
 	philo->n_eat = 0;
 	if (pthread_mutex_init(&(philo->var_mutex), NULL) != 0)
 		return (false);
-	phil->log_time = 0;
+	philo->log_time = 0;
 	philo->env = env;
 	return (true);
 }

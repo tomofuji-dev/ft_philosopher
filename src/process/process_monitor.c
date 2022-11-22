@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:28:39 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:04:08 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 #include "time_utils.h"
 
 void		*process_monitor(void *argv);
-static bool	judge_time_to_die(t_philo *philo, t_timeval t);
+static bool	judge_time_to_die(t_philo *philo);
 
 void	*process_monitor(void *argv)
 {
 	t_monitor	*monitor;
 	t_env		*env;
 	t_philo		*philo;
-	t_timeval	now;
 
 	monitor = argv;
 	env = monitor->env;
@@ -33,10 +32,10 @@ void	*process_monitor(void *argv)
 	{
 		pthread_mutex_lock(&(philo->var_mutex));
 		pthread_mutex_lock(&(env->finish_mutex));
-		gettimeofday(&now, NULL);
-		if (env->finish == false && judge_time_to_die(philo, now))
+		philo->log_time = timestamp_ms(env->start);
+		if (env->finish == false && judge_time_to_die(philo))
 		{
-			print_log(timestamp_ms(env->start), philo->index, "died");
+			print_log(philo, "died");
 			env->finish = true;
 		}
 		if (env->n_must_eat != -1 && env->n_already_eat == env->n_must_eat)
@@ -47,8 +46,8 @@ void	*process_monitor(void *argv)
 	return (NULL);
 }
 
-static bool	judge_time_to_die(t_philo *philo, t_timeval t)
+static bool	judge_time_to_die(t_philo *philo)
 {
-	return (timeval_to_micros(t) - timeval_to_micros(philo->last_meal_time) \
-			> timeval_to_micros(philo->env->time_to_die));
+	return (timestamp_ms(philo->env->start) - philo->last_meal_time \
+			> timeval_to_micros(philo->env->time_to_die) / 1000);
 }

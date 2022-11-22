@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:25:53 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:48:40 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philo
 	t_mutex			*left_fork;
 	t_mutex			*right_fork;
 	t_philo_status	status;
-	t_timeval		last_meal_time;
+	int				last_meal_time;
 	int				n_eat;
 	t_mutex			var_mutex;
 	int				log_time;

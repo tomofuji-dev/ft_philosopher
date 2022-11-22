@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:32:10 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:39:12 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:04:42 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	precise_usleep(int micros)
 void	print_log(t_philo *philo, char *message)
 {
 	if (philo->env->finish == false)
-		printf("%d %d %s\n", philo->log_time, philo->index, *message);
+		printf("%d %d %s\n", philo->log_time, philo->index, message);
 }
 
 void	wait_until(t_timeval t)

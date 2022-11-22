@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 15:39:11 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:28:39 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*process_monitor(void *argv)
 	wait_until(env->start);
 	while (env->finish == false)
 	{
-		pthread_mutex_lock(&(philo->eating_mutex));
+		pthread_mutex_lock(&(philo->var_mutex));
 		pthread_mutex_lock(&(env->finish_mutex));
 		gettimeofday(&now, NULL);
 		if (env->finish == false && judge_time_to_die(philo, now))
@@ -42,7 +42,7 @@ void	*process_monitor(void *argv)
 		if (env->n_must_eat != -1 && env->n_already_eat == env->n_must_eat)
 			env->finish = true;
 		pthread_mutex_unlock(&(env->finish_mutex));
-		pthread_mutex_unlock(&(philo->eating_mutex));
+		pthread_mutex_unlock(&(philo->var_mutex));
 	}
 	return (NULL);
 }

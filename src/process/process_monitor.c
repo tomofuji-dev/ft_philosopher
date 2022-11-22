@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 12:04:08 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:20:45 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	*process_monitor(void *argv)
 static bool	judge_time_to_die(t_philo *philo)
 {
 	return (timestamp_ms(philo->env->start) - philo->last_meal_time \
-			> timeval_to_micros(philo->env->time_to_die) / 1000);
+			> philo->env->time_to_die);
 }

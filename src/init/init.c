@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:47:29 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/21 16:02:17 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:19:36 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "time_utils.h"
 #include "close.h"
 
-#define MS_UNTIL_START 500
+#define MS_UNTIL_START 1000
 
 bool		init(t_env *env, int argc, char *argv[]);
 static bool	init_env(t_env *env);
@@ -63,5 +63,7 @@ static void	set_start_time(t_env *env)
 	t_timeval	now;
 
 	gettimeofday(&now, NULL);
+	now.tv_usec /= 1000;
+	now.tv_usec *= 1000;
 	env->start = add_timeval(now, ms_to_timeval(MS_UNTIL_START));
 }

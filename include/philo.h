@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:48:40 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:17:12 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_monitor
 typedef struct s_env
 {
 	int			n_philos;
-	t_timeval	time_to_die;
-	t_timeval	time_to_eat;
-	t_timeval	time_to_sleep;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
 	int			n_must_eat;
 	int			n_already_eat;
 	t_timeval	start;

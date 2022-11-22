@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:39:45 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:28:32 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:34:48 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@ void	close_all(t_env *env)
 
 	i = 0;
 	while (i < env->n_philos)
+	{
 		pthread_join(env->monitors[i].pthread, NULL);
+		i++;
+	}
+	i = 0;
 	while (i < env->n_philos)
+	{
 		pthread_join(env->philos[i].pthread, NULL);
+		i++;
+	}
 	close_philos(env->philos, env->n_philos);
 	close_forks(env->forks, env->n_philos);
 }

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 12:54:55 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:41:42 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ void	*process_philo(void *argv)
 		else if (philo->status == SLEEP)
 			philo_think(philo);
 		else if (philo->status == THINK)
+		{
 			philo_eat(philo);
+			if (philo->env->n_philos == 1)
+				return (NULL);
+		}
 	}
 	return (NULL);
 }
@@ -45,16 +49,21 @@ void	*process_philo(void *argv)
 static void	philo_eat(t_philo *philo)
 {
 	philo->status = EAT;
-	pthread_mutex_lock(&(philo->var_mutex));
 	pthread_mutex_lock(philo->left_fork);
 	philo->log_time = timestamp_ms(philo->env->start);
 	print_log(philo, "has taken a fork");
+	if (philo->env->n_philos == 1)
+		return ;
 	pthread_mutex_lock(philo->right_fork);
 	philo->log_time = timestamp_ms(philo->env->start);
+	pthread_mutex_lock(&(philo->var_mutex));
 	philo->last_meal_time = philo->log_time + philo->env->time_to_eat;
+	pthread_mutex_unlock(&(philo->var_mutex));
 	print_log(philo, "has taken a fork");
 	print_log(philo, "is eating");
-	precise_usleep(philo->env->time_to_eat * 1000);
+	wait_until(\
+		add_timeval(philo->env->start, ms_to_timeval(philo->last_meal_time)));
+	pthread_mutex_lock(&(philo->var_mutex));
 	pthread_mutex_lock(&(philo->env->finish_mutex));
 	philo->n_eat += 1;
 	if (philo->n_eat == philo->env->n_must_eat && philo->env->n_must_eat != -1)

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 11:28:46 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:36:32 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*process_philo(void *argv)
 	env = philo->env;
 	wait_until(env->start);
 	if (philo->index % 2 == 0)
-		usleep(timeval_to_micros(philo->env->time_to_eat));
+		precise_usleep(timeval_to_micros(philo->env->time_to_eat));
 	while (env->finish == false)
 	{
 		if (philo->status == EAT)
@@ -70,7 +70,7 @@ static void	philo_sleep(t_philo *philo)
 {
 	philo->status = SLEEP;
 	print_log(timestamp_ms(philo->env->start), philo->index, "is sleeping");
-	usleep(timeval_to_micros(philo->env->time_to_sleep));
+	precise_usleep(timeval_to_micros(philo->env->time_to_sleep));
 }
 
 static void	philo_think(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:31:31 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/19 11:12:50 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:39:41 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "philo.h"
 
-void	print_log(int timestamp, int philo_index, char *message);
+void	precise_usleep(int micros);
+void	print_log(t_philo *philo, char *message);
 void	wait_until(t_timeval t);
 
 #endif

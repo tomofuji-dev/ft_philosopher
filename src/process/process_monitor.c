@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_monitor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 18:31:43 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/23 12:06:36 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*process_monitor(void *argv)
 			env->finish = true;
 		pthread_mutex_unlock(&(env->finish_mutex));
 		pthread_mutex_unlock(&(philo->var_mutex));
-		precise_usleep(50);
+		precise_usleep(100);
 	}
 	return (NULL);
 }

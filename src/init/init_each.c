@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 13:25:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:06:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,20 @@ static bool	init_a_philo(t_env *env, int index)
 	if (pthread_create(&(philo->pthread), NULL, process_philo, philo) != 0)
 		return (false);
 	philo->index = index;
-	if (index == 0)
+	if (index % 2 == 0)
 	{
-		philo->left_fork = &(env->forks[env->n_philos - 1]);
-		philo->right_fork = &(env->forks[index]);
+		philo->left_fork = &(env->forks[index]);
+		if (index == 0)
+			philo->right_fork = &(env->forks[env->n_philos - 1]);
+		else
+			philo->right_fork = &(env->forks[index - 1]);
 	}
 	else
 	{
-		philo->left_fork = &(env->forks[index]);
-		philo->right_fork = &(env->forks[index - 1]);
+		philo->left_fork = &(env->forks[index - 1]);
+		philo->right_fork = &(env->forks[index]);
 	}
 	philo->status = THINK;
-	philo->last_meal_time = 0;
-	philo->n_eat = 0;
 	if (pthread_mutex_init(&(philo->var_mutex), NULL) != 0)
 		return (false);
 	philo->env = env;

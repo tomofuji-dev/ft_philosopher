@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 14:08:15 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:21:39 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*process_philo(void *argv)
 	wait_until(env->start);
 	if (philo->index % 2 == 0)
 	{
-		print_log(philo, 0, "is thinking");
+		print_log(philo, "is thinking");
 		precise_usleep(500);
 	}
 	while (env->finish == false)
@@ -55,13 +55,13 @@ static void	philo_eat(t_philo *philo)
 
 	philo->status = EAT;
 	pthread_mutex_lock(philo->left_fork);
-	print_log(philo, timestamp_ms(philo->env->start), "has taken a fork");
+	print_log(philo, "has taken a fork");
 	if (philo->env->n_philos == 1)
 		return ;
 	pthread_mutex_lock(philo->right_fork);
 	time_for_log = timestamp_ms(philo->env->start);
-	print_log(philo, time_for_log, "has taken a fork");
-	print_log(philo, time_for_log, "is eating");
+	print_log(philo, "has taken a fork");
+	print_log(philo, "is eating");
 	pthread_mutex_lock(&(philo->var_mutex));
 	philo->last_meal_time = time_for_log;
 	pthread_mutex_unlock(&(philo->var_mutex));
@@ -79,12 +79,12 @@ static void	philo_eat(t_philo *philo)
 static void	philo_sleep(t_philo *philo)
 {
 	philo->status = SLEEP;
-	print_log(philo, timestamp_ms(philo->env->start), "is sleeping");
+	print_log(philo, "is sleeping");
 	precise_usleep(philo->env->time_to_sleep * 1000);
 }
 
 static void	philo_think(t_philo *philo)
 {
 	philo->status = THINK;
-	print_log(philo, timestamp_ms(philo->env->start), "is thinking");
+	print_log(philo, "is thinking");
 }

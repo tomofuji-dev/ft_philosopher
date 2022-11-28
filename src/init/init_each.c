@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 17:18:25 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:02:48 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ static bool	init_a_philo(t_env *env, int index)
 	t_philo	*philo;
 
 	philo = &(env->philos[index]);
-	printf("pthread_create\n");
+	philo->env = env;
 	if (pthread_create(&(philo->pthread), NULL, process_philo, philo) != 0)
 		return (false);
-	printf("philo->index = index\n");
 	philo->index = index;
 	if (index % 2 == 0)
 	{
@@ -89,7 +88,6 @@ static bool	init_a_philo(t_env *env, int index)
 	philo->status = THINK;
 	if (pthread_mutex_init(&(philo->var_mutex), NULL) != 0)
 		return (false);
-	philo->env = env;
 	return (true);
 }
 

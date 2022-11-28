@@ -8,9 +8,9 @@ INCLUDES	=	-I $(INCLUDE_DIR)
 SRCDIRS		=	$(shell find $(SRC_DIR) -type d)
 INCLUDES 	+=	$(addprefix -I ,$(SRCDIRS))
 
-CC			=	cc
+CC			=	gcc
 RM			=	rm
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address
 
 SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/arg_parse.c \

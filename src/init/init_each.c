@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 18:00:21 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:25:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 bool		init_forks(t_env *env);
 bool		init_philos(t_env *env);
 static bool	init_a_philo(t_env *env, int index);
-bool		init_monitors(t_env *env);
+bool		init_monitor(t_env *env);
 
 bool	init_forks(t_env *env)
 {
@@ -90,27 +90,10 @@ static bool	init_a_philo(t_env *env, int index)
 	return (true);
 }
 
-bool	init_monitors(t_env *env)
+bool	init_monitor(t_env *env)
 {
-	int	i;
-
-	env->monitors = malloc(env->n_philos * sizeof(t_monitor));
-	if (env->monitors == NULL)
-		return (false);
-	bzero(env->monitors, env->n_philos * sizeof(t_monitor));
-	i = 0;
-	while (i < env->n_philos)
-	{
-		if (pthread_create(&(env->monitors[i].pthread), \
-							NULL, process_monitor, &(env->monitors[i])) != 0)
-		{
-			free(env->monitors);
-			return (false);
-		}
-		env->monitors[i].index = i;
-		env->monitors[i].obj_philo = &(env->philos[i]);
-		env->monitors[i].env = env;
-		i++;
-	}
-	return (true);
+	if (pthread_create(&(env->monitor), \
+						NULL, process_monitor, env) == 0)
+		return (true);
+	return (false);
 }

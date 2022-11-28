@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:38:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 18:00:08 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:29:20 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ typedef struct s_philo
 	struct s_env	*env;
 }	t_philo;
 
-typedef struct s_monitor
-{
-	t_pthread		pthread;
-	int				index;
-	t_philo			*obj_philo;
-	struct s_env	*env;
-}	t_monitor;
-
 typedef struct s_env
 {
 	int			n_philos;
@@ -62,7 +54,7 @@ typedef struct s_env
 	t_timeval	start;
 	t_mutex		*forks;
 	t_philo		*philos;
-	t_monitor	*monitors;
+	t_pthread	monitor;
 	bool		finish;
 	t_mutex		finish_mutex;
 }	t_env;

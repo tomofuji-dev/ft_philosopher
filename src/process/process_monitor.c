@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_monitor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/23 12:06:36 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/11/28 13:32:56 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,47 @@
 #include "time_utils.h"
 
 void		*process_monitor(void *argv);
+static void	monitor_philo(t_env *env, int index);
 static bool	judge_time_to_die(t_philo *philo);
 
 void	*process_monitor(void *argv)
 {
-	t_monitor	*monitor;
-	t_env		*env;
-	t_philo		*philo;
+	t_env	*env;
+	int		i;
 
-	monitor = argv;
-	env = monitor->env;
-	philo = monitor->obj_philo;
+	env = argv;
 	wait_until(env->start);
-	while (env->finish == false)
+	while (1)
 	{
-		pthread_mutex_lock(&(philo->var_mutex));
 		pthread_mutex_lock(&(env->finish_mutex));
-		if (env->finish == false && judge_time_to_die(philo))
+		i = 0;
+		while (i < env->n_philos && env->finish == false)
 		{
-			print_log(philo, timestamp_ms(env->start), "died");
-			env->finish = true;
+			monitor_philo(env, i);
+			i++;
 		}
-		if (env->n_must_eat != -1 && env->n_already_eat == env->n_philos)
-			env->finish = true;
 		pthread_mutex_unlock(&(env->finish_mutex));
-		pthread_mutex_unlock(&(philo->var_mutex));
-		precise_usleep(100);
+		if (env->finish == true)
+			break ;
+		precise_usleep(500);
 	}
 	return (NULL);
+}
+
+static void	monitor_philo(t_env *env, int index)
+{
+	t_philo	*philo;
+
+	philo = &(env->philos[index]);
+	pthread_mutex_lock(&(philo->var_mutex));
+	if (env->finish == false && judge_time_to_die(philo))
+	{
+		print_log(philo, timestamp_ms(env->start), "died");
+		env->finish = true;
+	}
+	if (env->n_must_eat != -1 && env->n_already_eat == env->n_philos)
+		env->finish = true;
+	pthread_mutex_unlock(&(philo->var_mutex));
 }
 
 static bool	judge_time_to_die(t_philo *philo)

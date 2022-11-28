@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:39:45 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 17:48:41 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:41:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ void	close_all(t_env *env)
 {
 	int	i;
 
-	i = 0;
-	while (i < env->n_philos)
-	{
-		pthread_join(env->monitors[i].pthread, NULL);
-		i++;
-	}
+	pthread_join(env->monitor, NULL);
 	i = 0;
 	while (i < env->n_philos)
 	{
@@ -34,7 +29,6 @@ void	close_all(t_env *env)
 	}
 	close_philos(env->philos, env->n_philos);
 	close_forks(env->forks, env->n_philos);
-	free(env->monitors);
 }
 
 void	close_forks(t_mutex *forks, int size)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/23 11:52:56 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/11/28 13:39:10 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ static void	philo_eat(t_philo *philo)
 	wait_until(add_timeval(philo->env->start, \
 		ms_to_timeval(philo->last_meal_time + philo->env->time_to_eat)));
 	pthread_mutex_lock(&(philo->var_mutex));
-	pthread_mutex_lock(&(philo->env->finish_mutex));
 	philo->n_eat += 1;
 	if (philo->n_eat == philo->env->n_must_eat && philo->env->n_must_eat != -1)
 		philo->env->n_already_eat += 1;
-	pthread_mutex_unlock(&(philo->env->finish_mutex));
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(&(philo->var_mutex));

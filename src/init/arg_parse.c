@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:19:28 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/17 16:32:15 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:31:41 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ static int	parse_int(char *str)
 
 static bool	check_args(t_args *args)
 {
-	if (args->n_philos == -1 || args->time_to_die == -1 \
-		|| args->time_to_eat == -1 || args->time_to_sleep == -1 \
-		|| args->n_must_eat == -1)
+	if (args->n_philos <= 0 || args->n_philos > 200 \
+		|| args->time_to_die <= 60 || args->time_to_eat <= 60 \
+		|| args->time_to_sleep <= 60 || args->n_must_eat == -1)
 		return (false);
 	return (true);
 }

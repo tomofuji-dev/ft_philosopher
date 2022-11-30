@@ -6,7 +6,7 @@
 /*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/30 16:59:42 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:52:05 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		*process_philo(void *argv);
 static void	philo_eat(t_philo *philo);
 static void	philo_sleep(t_philo *philo);
 static void	philo_think(t_philo *philo);
+static void	philo_first_think(t_philo *philo);
 
 void	*process_philo(void *argv)
 {
@@ -28,11 +29,7 @@ void	*process_philo(void *argv)
 	philo = argv;
 	env = philo->env;
 	wait_until(env->start);
-	if (philo->index % 2 == 0)
-	{
-		print_log(philo, "is thinking");
-		precise_usleep(500);
-	}
+	philo_first_think(philo);
 	while (env->finish == false)
 	{
 		if (philo->status == EAT)
@@ -87,4 +84,36 @@ static void	philo_think(t_philo *philo)
 {
 	philo->status = THINK;
 	print_log(philo, "is thinking");
+	wait_until(add_timeval(philo->env->start, \
+		ms_to_timeval(philo->last_meal_time + philo->env->time_to_die)));
 }
+
+static void	philo_first_think(t_philo *philo)
+{
+	int		diff;
+	t_env	*env;
+
+	env = philo->env;
+	if (env->n_philos % 2 == 0)
+	{
+		if (philo->index % 2 == 0)
+		{
+			print_log(philo, "is thinking");
+			precise_usleep(500);
+		}
+	}
+	diff = env->time_to_die - env->time_to_eat;
+	if (philo->index == 0)
+		return ;
+	print_log(philo, "is thinking");
+	precise_usleep(diff / (env->n_philos / 2 + 1) * 1000);
+}
+
+	// else
+	// {
+	// 	sleep_index = (2 * philo->index + 1) % philo->env->n_philos;
+	// 	if (sleep_index == 0)
+	// 		sleep_index = 5;
+	// 	print_log(philo, "is thinking");
+	// 	precise_usleep(sleep_index * philo->env->time_to_eat * 1000 / 2);
+	// }

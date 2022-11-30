@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_monitor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 16:13:49 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:27:15 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ static void	monitor_philo(t_env *env, int index)
 static bool	judge_time_to_die(t_philo *philo)
 {
 	return (timestamp_ms(philo->env->start) - philo->last_meal_time \
-			> philo->env->time_to_die);
+			>= philo->env->time_to_die);
 }

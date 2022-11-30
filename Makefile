@@ -10,7 +10,7 @@ INCLUDES 	+=	$(addprefix -I ,$(SRCDIRS))
 
 CC			=	gcc
 RM			=	rm
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror
 
 SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/arg_parse.c \

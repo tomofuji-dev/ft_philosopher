@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:19:28 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 14:31:41 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:29:11 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ static int	parse_int(char *str)
 static bool	check_args(t_args *args)
 {
 	if (args->n_philos <= 0 || args->n_philos > 200 \
-		|| args->time_to_die <= 60 || args->time_to_eat <= 60 \
-		|| args->time_to_sleep <= 60 || args->n_must_eat == -1)
+		|| args->time_to_die < 60 || args->time_to_eat < 60 \
+		|| args->time_to_sleep < 60 || args->n_must_eat == -1)
 		return (false);
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 14:21:39 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:59:42 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ static void	philo_eat(t_philo *philo)
 		return ;
 	pthread_mutex_lock(philo->right_fork);
 	time_for_log = timestamp_ms(philo->env->start);
-	print_log(philo, "has taken a fork");
-	print_log(philo, "is eating");
 	pthread_mutex_lock(&(philo->var_mutex));
 	philo->last_meal_time = time_for_log;
 	pthread_mutex_unlock(&(philo->var_mutex));
+	print_log(philo, "has taken a fork");
+	print_log(philo, "is eating");
 	wait_until(add_timeval(philo->env->start, \
 		ms_to_timeval(philo->last_meal_time + philo->env->time_to_eat)));
 	pthread_mutex_lock(&(philo->var_mutex));

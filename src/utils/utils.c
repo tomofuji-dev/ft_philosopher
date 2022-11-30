@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:32:10 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 14:20:11 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:26:12 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_log(t_philo *philo, char *message)
 	pthread_mutex_lock(&(philo->env->finish_mutex));
 	if (philo->env->finish == false)
 		printf("%d %d %s\n", timestamp_ms(philo->env->start), \
-				philo->index, message);
+				philo->index + 1, message);
 	pthread_mutex_unlock(&(philo->env->finish_mutex));
 }
 

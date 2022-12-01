@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/01 12:58:00 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:49:52 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ static void	philo_think(t_philo *philo)
 
 static void	philo_first_think(t_philo *philo)
 {
-	int		mod;
 	t_env	*env;
+	int		wait;
 
 	env = philo->env;
 	if (env->n_philos % 2 == 0)
@@ -103,11 +103,15 @@ static void	philo_first_think(t_philo *philo)
 	if (philo->index == 0)
 		return ;
 	if (philo->index == env->n_philos - 1)
-	{	
-		first_think_print(philo, env->time_to_eat);
-		return ;
+		return (first_think_print(philo, env->time_to_eat));
+	if (philo->index % 2 == 1)
+	{
+		wait = (philo->index - 1) * env->time_to_eat / (env->n_philos - 1);
+		return (first_think_print(philo, wait + 1));
 	}
-	mod = (philo->index * env->time_to_eat) % env->time_to_die;
-	if (mod != 0)
-		first_think_print(philo, mod);
+	else
+	{
+		wait = philo->index * env->time_to_eat / (env->n_philos - 1);
+		return (first_think_print(philo, wait));
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/30 20:52:05 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:59:04 by t.fuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	philo_think(t_philo *philo)
 
 static void	philo_first_think(t_philo *philo)
 {
-	int		diff;
+	int		mod;
 	t_env	*env;
 
 	env = philo->env;
@@ -101,12 +101,18 @@ static void	philo_first_think(t_philo *philo)
 			print_log(philo, "is thinking");
 			precise_usleep(500);
 		}
+		return ;
 	}
-	diff = env->time_to_die - env->time_to_eat;
 	if (philo->index == 0)
 		return ;
-	print_log(philo, "is thinking");
-	precise_usleep(diff / (env->n_philos / 2 + 1) * 1000);
+	mod = (philo->index * env->time_to_eat) % env->time_to_die;
+	if (mod != 0)
+	{
+		print_log(philo, "is thinking");
+		precise_usleep(mod * 1000);
+	}
+	else if (philo->index == env->n_philos - 1)
+		print_log(philo, "is thinking");
 }
 
 	// else

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/01 18:49:52 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:53:09 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ static void	philo_think(t_philo *philo)
 {
 	philo->status = THINK;
 	print_log(philo, "is thinking");
-	wait_until(add_timeval(philo->env->start, \
-		ms_to_timeval(philo->last_meal_time + philo->env->time_to_die)));
 }
 
 static void	philo_first_think(t_philo *philo)

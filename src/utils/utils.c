@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:32:10 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/30 16:26:12 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/12/01 12:46:15 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,10 @@ void	wait_until(t_timeval t)
 	diff_ms = timeval_to_ms(t) - timeval_to_ms(now);
 	if (diff_ms > 0)
 		precise_usleep(diff_ms * 1000);
+}
+
+void	first_think_print(t_philo *philo, int ms)
+{
+	print_log(philo, "is thinking");
+	wait_until(add_timeval(philo->env->start, ms_to_timeval(ms)));
 }

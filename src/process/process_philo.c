@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/01 10:59:04 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/12/01 12:58:00 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,29 +97,17 @@ static void	philo_first_think(t_philo *philo)
 	if (env->n_philos % 2 == 0)
 	{
 		if (philo->index % 2 == 0)
-		{
-			print_log(philo, "is thinking");
-			precise_usleep(500);
-		}
+			first_think_print(philo, 1);
 		return ;
 	}
 	if (philo->index == 0)
 		return ;
+	if (philo->index == env->n_philos - 1)
+	{	
+		first_think_print(philo, env->time_to_eat);
+		return ;
+	}
 	mod = (philo->index * env->time_to_eat) % env->time_to_die;
 	if (mod != 0)
-	{
-		print_log(philo, "is thinking");
-		precise_usleep(mod * 1000);
-	}
-	else if (philo->index == env->n_philos - 1)
-		print_log(philo, "is thinking");
+		first_think_print(philo, mod);
 }
-
-	// else
-	// {
-	// 	sleep_index = (2 * philo->index + 1) % philo->env->n_philos;
-	// 	if (sleep_index == 0)
-	// 		sleep_index = 5;
-	// 	print_log(philo, "is thinking");
-	// 	precise_usleep(sleep_index * philo->env->time_to_eat * 1000 / 2);
-	// }

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:47:29 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/28 14:27:41 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/03 13:03:10 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static bool	init_env(t_env *env)
 		close_forks(env->forks, env->n_philos);
 		return (false);
 	}
-	env->finish = false;
 	if (pthread_mutex_init(&(env->finish_mutex), NULL) != 0)
 	{
 		env->finish = true;

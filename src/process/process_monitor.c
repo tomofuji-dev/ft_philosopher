@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_monitor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 09:53:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/30 16:59:22 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/12/03 12:30:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ void	*process_monitor(void *argv)
 			monitor_philo(env, i);
 			i++;
 		}
-		pthread_mutex_unlock(&(env->finish_mutex));
 		if (env->finish == true)
+		{
+			pthread_mutex_unlock(&(env->finish_mutex));
 			break ;
+		}
+		pthread_mutex_unlock(&(env->finish_mutex));
 		precise_usleep(800);
 	}
 	return (NULL);

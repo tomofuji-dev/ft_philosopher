@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:32:10 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/01 12:46:15 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/03 13:15:31 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,14 @@ void	first_think_print(t_philo *philo, int ms)
 {
 	print_log(philo, "is thinking");
 	wait_until(add_timeval(philo->env->start, ms_to_timeval(ms)));
+}
+
+bool	check_finish(t_env	*env)
+{
+	bool	finish;
+
+	pthread_mutex_lock(&env->finish_mutex);
+	finish = env->finish;
+	pthread_mutex_unlock(&env->finish_mutex);
+	return (finish);
 }

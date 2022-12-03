@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_each.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/30 16:25:52 by t.fuji           ###   ########.fr       */
+/*   Updated: 2022/12/03 13:00:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ static bool	init_a_philo(t_env *env, int index)
 
 	philo = &(env->philos[index]);
 	philo->env = env;
-	if (pthread_create(&(philo->pthread), NULL, process_philo, philo) != 0)
-		return (false);
 	philo->index = index;
 	if (index % 2 == 0)
 	{
@@ -86,6 +84,8 @@ static bool	init_a_philo(t_env *env, int index)
 		philo->right_fork = &(env->forks[index]);
 	}
 	philo->status = THINK;
+	if (pthread_create(&(philo->pthread), NULL, process_philo, philo) != 0)
+		return (false);
 	if (pthread_mutex_init(&(philo->var_mutex), NULL) != 0)
 		return (false);
 	return (true);

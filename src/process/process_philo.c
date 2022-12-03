@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/03 17:46:53 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:57:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	philo_first_think(t_philo *philo)
 	if (env->n_philos % 2 == 0)
 	{
 		if (philo->index % 2 == 0)
-			first_think_print(philo, 1);
+			first_think_print(philo, env->time_to_eat);
 		return ;
 	}
 	if (philo->index == 0)

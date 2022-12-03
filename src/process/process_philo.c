@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:04:37 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/03 13:22:57 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:46:53 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*process_philo(void *argv)
 	env = philo->env;
 	wait_until(env->start);
 	philo_first_think(philo);
-	while (check_finish(env))
+	while (check_finish(env) == false)
 	{
 		if (philo->status == EAT)
 			philo_sleep(philo);

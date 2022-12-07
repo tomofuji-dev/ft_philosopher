@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:14:33 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 12:18:07 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:35:41 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	arg_to_env(t_env *env, int argc, char *argv[])
 {
 	t_args	args;
 
-	bzero(&args, sizeof(t_args));
+	memset(&args, 0, sizeof(t_args));
 	if (arg_parse(&args, argc, argv) == false)
 		return (false);
 	env->n_philos = args.n_philos;

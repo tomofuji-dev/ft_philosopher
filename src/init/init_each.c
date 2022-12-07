@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:26:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/12/03 13:00:55 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:36:02 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	init_forks(t_env *env)
 	env->forks = malloc(env->n_philos * sizeof(t_mutex));
 	if (env->forks == NULL)
 		return (false);
-	bzero(env->forks, env->n_philos * sizeof(t_mutex));
+	memset(env->forks, 0, env->n_philos * sizeof(t_mutex));
 	i = 0;
 	while (i < env->n_philos)
 	{
@@ -49,7 +49,7 @@ bool	init_philos(t_env *env)
 	env->philos = malloc(env->n_philos * sizeof(t_philo));
 	if (env->philos == NULL)
 		return (false);
-	bzero(env->philos, env->n_philos * sizeof(t_philo));
+	memset(env->philos, 0, env->n_philos * sizeof(t_philo));
 	i = 0;
 	while (i < env->n_philos)
 	{

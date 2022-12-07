@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:39:40 by tfujiwar          #+#    #+#             */
-/*   Updated: 2022/11/22 18:25:45 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:35:27 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 {
 	t_env	env;
 
-	bzero(&env, sizeof(t_env));
+	memset(&env, 0, sizeof(t_env));
 	if (init(&env, argc, argv) == false)
 		return (1);
 	close_all(&env);
